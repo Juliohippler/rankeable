@@ -6,6 +6,7 @@
 package br.ufpr.rankeable.controllers;
 
 import br.ufpr.rankeable.logica.Navegacao;
+
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,10 @@ public class VotacaoController {
 
     Navegacao navegacao;  //"setado" por injeção de dependência
     
+    public VotacaoController(){
+        
+    }
+    
     public VotacaoController(Navegacao navegacao) {
     }
     
@@ -29,11 +34,11 @@ public class VotacaoController {
     @RequestMapping("/telaVotacao")
     public String telaVotacao(Model model){
         
-        Rankeavel rankeavel = navegacao.getProximo();
-        model.addAttribute("rankeavel", rankeavel);
+      //  Rankeavel rankeavel = navegacao.getProximo();
+        //model.addAttribute("rankeavel", rankeavel);
         
-        List<Categoria> categorias = pegaCategorias.getCategorias();
-        model.addAttribute("categorias",categorias);
+       // List<Categoria> categorias = pegaCategorias.getCategorias();
+        //model.addAttribute("categorias",categorias);
         
         return "tela-principal";
     }
