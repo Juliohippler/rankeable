@@ -25,7 +25,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
         if (request.getSession()
-                .getAttribute("usuarioLogado") != null) {
+                .getAttribute("usuario") != null) {
             return true;
         }
         response.sendRedirect("/Trabalho/loginForm");

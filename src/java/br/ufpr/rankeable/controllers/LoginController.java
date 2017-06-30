@@ -34,11 +34,13 @@ public class LoginController {
     public String efetuaLogin(Usuario usuario, HttpSession session) throws SQLException {
       
         if (new JdbcUsuarioDao().existeUsuario(usuario)) {
-            session.setAttribute("usuarioLogado", usuario.getUsuario());
+            session.setAttribute("usuario", usuario);
+            
+            
             return "menu";    
       
         }
-        return "redirect:menu";
+        return "redirect:menu?id="+usuario.getId();
         //return "redirect:telaVotacao";
     }
     @RequestMapping("logout")

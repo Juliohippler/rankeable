@@ -45,7 +45,7 @@
       
    </table>
       
-        <td><a href="novoTopico?id_usuario=${topico.id_usuario}"  >Adicionar Novo tópico </a></td>
+        <td><a href="novoTopico?id_usuario=${usuario.id}"  >Adicionar Novo tópico </a></td>
         
     </body>
 </html>

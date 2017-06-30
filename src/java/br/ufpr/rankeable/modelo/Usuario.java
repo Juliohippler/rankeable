@@ -12,8 +12,9 @@ import static javax.swing.text.StyleConstants.Size;
  * @author julio
  */
     public class Usuario {
-   
-    private String usuario;
+        
+    private int id;  
+    private String nome;
     private String senha;
     
     private boolean finalizado;
@@ -22,13 +23,20 @@ import static javax.swing.text.StyleConstants.Size;
         super();
     }
 
-      
-    public String getUsuario() {
-        return usuario;
+      public int getId() {
+        return id;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getSenha() {
@@ -38,6 +46,8 @@ import static javax.swing.text.StyleConstants.Size;
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+   
     
 
 }

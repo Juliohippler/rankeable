@@ -9,6 +9,7 @@ package br.ufpr.rankeable.controllers;
 import br.ufpr.rankeable.dao.JdbcTopicosDao;
 
 import br.ufpr.rankeable.modelo.Topico;
+import br.ufpr.rankeable.modelo.Usuario;
 import java.io.IOException;
 
 import java.util.List;
@@ -27,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TopicosController {
     @RequestMapping("/novoTopico")
     public String form(){
+       // model.addAttribute("usuario", usuario.getUsuario());
+      
         return "topicos/formulario";
     }
     
@@ -37,8 +40,8 @@ public class TopicosController {
         }
         
         JdbcTopicosDao dao = new JdbcTopicosDao();
-        dao.adiciona(topico);
-        return "redirect:listaTopicos";
+        dao.adiciona(topico, topico.getId_Usuario());
+        return "redirect:listaTopicos?="+topico.getId_Usuario();
     }
     
       @RequestMapping("/listaTopicos")

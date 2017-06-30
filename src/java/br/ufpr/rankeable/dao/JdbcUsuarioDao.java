@@ -30,9 +30,31 @@ public class JdbcUsuarioDao {
     public JdbcUsuarioDao() {
         connection = (new MysqlConnectionFactory()).getConnection();
     }
+    
+    public Usuario buscaUsuario(String nome) {
+        String sql = "select * from usuarios where nome = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+                Usuario usuario = new Usuario();
+            if (rs.next()) {                
+                usuario.setId(rs.getInt("id"));
+                
+                usuario.setNome(rs.getString("nome"));
+               
+            }
+            stmt.close();
+            return usuario;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 
     public boolean existeUsuario(Usuario usuario) throws SQLException {
-             String sql = "select * from usuarios where usuario = ? and senha = ? ";  
+             String sql = "select * from usuarios where nome = ? and senha = ? ";  
         try {
                  
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -40,9 +62,8 @@ public class JdbcUsuarioDao {
           //  String login = usuario.getNome();
             //String senha = usuario.getSenha();
             
-            stmt.setString(1, usuario.getUsuario());
-            stmt.setString(2, usuario.getSenha());         
-            
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getSenha());                  
            
           
             ResultSet rs = stmt.executeQuery();
