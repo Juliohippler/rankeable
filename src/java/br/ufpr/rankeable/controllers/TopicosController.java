@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 //import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,30 +28,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TopicosController {
     @RequestMapping("/novoTopico")
-    public String form(){
-       // model.addAttribute("usuario", usuario.getUsuario());
+    public String form(Usuario usuario, HttpSession session){   
       
-        return "topicos/formulario";
+       session.getAttribute("usuario");    
+       return "topicos/formulario";
     }
     
     @RequestMapping("/adicionaTopico")
-    public String adicionar(Topico topico, BindingResult result){        
+    public String adicionar(Usuario usuario, Topico topico, BindingResult result, HttpSession session){        
         if (result.hasErrors()){
             return "topicos/formulario";
-        }
-        
+        }        
         JdbcTopicosDao dao = new JdbcTopicosDao();
-        dao.adiciona(topico, topico.getId_Usuario());
+       // session.setAttribute("usuario", usuario);
+        session.getAttribute("usuario");
+        dao.adiciona(topico, usuario.getId());
         return "redirect:listaTopicos?="+topico.getId_Usuario();
     }
+
     
       @RequestMapping("/listaTopicos")
-    public String listar(Model model) {
+    public String listar(Model model, HttpSession session) {
         JdbcTopicosDao dao = new JdbcTopicosDao();
         List<Topico> topicos = dao.getLista();
+        session.getAttribute("usuario");
         model.addAttribute("topicos",topicos);
         return "topicos/lista";
     }
+    
+    
      @RequestMapping("mostraTopico")
     public String mostra(Topico topico, Model model){
         JdbcTopicosDao dao = new JdbcTopicosDao();

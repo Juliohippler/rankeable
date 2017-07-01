@@ -20,7 +20,7 @@
     <body>
         <table>
   <tr>
-    <th>Id</th>
+    
     <th>Autor</th>
     <th>Descrição</th>
 
@@ -29,14 +29,13 @@
   <c:forEach var="topico" items="${topicos}">
     
       <tr id="topicos_${topico.id}">
-          <td>${topico.id}</td>
+       
           <td></td>
           <td>${topico.descricao}</td>         
           
           <td><a href="mostraTopico?id=${topico.id}">Editar</a></td>
           <td><a href="removeTopico?id=${topico.id}">Remover</a></td>
           
-          <td><a href="novoComentario?id=${topico.id}">Comentar</a></td>
           <td><a href="listaComentarios?id=${topico.id}">Ver comentarios</a></td>
          
       </tr>

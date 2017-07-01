@@ -39,8 +39,7 @@ public class JdbcUsuarioDao {
             ResultSet rs = stmt.executeQuery();
                 Usuario usuario = new Usuario();
             if (rs.next()) {                
-                usuario.setId(rs.getInt("id"));
-                
+                usuario.setId(rs.getInt("id"));                
                 usuario.setNome(rs.getString("nome"));
                
             }
@@ -53,7 +52,7 @@ public class JdbcUsuarioDao {
         }
     }
 
-    public boolean existeUsuario(Usuario usuario) throws SQLException {
+    public Usuario existeUsuario(Usuario usuario) throws SQLException {
              String sql = "select * from usuarios where nome = ? and senha = ? ";  
         try {
                  
@@ -69,11 +68,11 @@ public class JdbcUsuarioDao {
             ResultSet rs = stmt.executeQuery();
              // Se existir registr             
             if (rs.next()) {
-
-                return true;
+                usuario.setId(rs.getInt("id"));
+               return usuario;
                 // Existe o usuario  
             } else {
-                return false;
+                return null;
                 // Nao existe o usuario  
             }
 

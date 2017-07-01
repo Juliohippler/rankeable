@@ -58,7 +58,7 @@ public class JdbcTopicosDao {
                 Topico topico = new Topico();
                 topico.setId(rs.getInt("id"));
                 topico.setDescricao(rs.getString("descricao"));                      
-              
+                topico.setId_Usuario(rs.getInt("id_usuario"));
                 topicos.add(topico);
             }
             stmt.close();
@@ -80,7 +80,7 @@ public class JdbcTopicosDao {
                 Topico topico = new Topico();
                 topico.setId(rs.getInt("id"));
                 topico.setDescricao(rs.getString("descricao"));                             
-                
+                topico.setId_Usuario(rs.getInt("id_usuario"));
 
                topicos.add(topico);
             }

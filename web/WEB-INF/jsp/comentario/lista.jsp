@@ -26,7 +26,7 @@
       <tr id="comentarios_${comentario.id}">
           <td>${comentario.id}</td>
           <td>${comentario.comentario}</td>
-          
+ 
           <td><a href="removeComentario?id=${comentario.id}&id_topico=${comentario.id_topico}">Remover</a></td>
           <td><a href="mostraComentario?id=${comentario.id}&id_topico=${comentario.id_topico}">Editar</a></td>
         
@@ -36,7 +36,7 @@
       <br>
    </table>
 
-      
+        <td><a href="novoComentario?id=${topico.id}">Comentar</a></td>
         <td><a href="listaTopicos"> Ir para lista de Topicos </a></td>
         
        
